@@ -34,7 +34,7 @@ function Section2() {
 
     return (
         <div className='bg-white'>
-            <div className='container py-10'>
+            <div className='container py-10 md:py-12 lg:py-16'>
                 <p className="text-base font-epilogue text-neutral/80 mb-5">Companies we helped grow</p>
 
                 <Marquee direction='right' autoFill={true} loop={0} pauseOnHover={true}>

@@ -4,6 +4,7 @@ import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import localFont from "next/font/local"
 import Navbar from "@/shared/Navbar/Navbar";
+import Footer from "@/shared/Navbar/Footer/Footer";
 
 const epilogue = Epilogue({
   variable: "--font-epilogue",
@@ -107,7 +108,7 @@ export default function RootLayout({
         <div className="">
           {children}
         </div>
-        {/* <Footer /> */}
+        <Footer />
 
 
       </body>

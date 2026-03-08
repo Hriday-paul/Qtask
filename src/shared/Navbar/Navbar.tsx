@@ -77,7 +77,7 @@ function Navbar() {
 
                             <div className="w-px bg-neutral/20 h-8"></div>
 
-                            <button onClick={handleMoveProfile} className='cursor-pointer text-white border-0 bg-primary px-5 py-3 font-epilogue font-bold'>
+                            <button className='cursor-pointer text-white border-0 bg-primary px-5 py-3 font-epilogue font-bold'>
                                 Sign Up
                             </button>
 
