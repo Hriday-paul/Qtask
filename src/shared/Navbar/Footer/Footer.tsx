@@ -16,7 +16,7 @@ export default function Footer() {
                             </Link>
                             <p className="mt-[18px] text-[15px] font-normal text-[#D6DDEB]">Great platform for the job seeker that passionate about startups. Find your dream job easier.</p>
                         </div>
-                        <div className="col-span-3 grid grid-cols-1 md:grid-cols-3 justify-between gap-5">
+                        <div className="col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
 
                             <div className="">
                                 <p className="text-white text-[18px] font-medium leading-normal">About</p>
@@ -94,7 +94,7 @@ export default function Footer() {
                                 <div className="mt-6 flex flex-col gap-4 sm:mt-0">
                                     <p className="text-deutziawhite font-inter text-[18px] font-medium">Get job notifications</p>
                                     <p className="text-sm text-[#D6DDEB]">The latest job news, articles, sent to your inbox weekly.</p>
-                                    <div className="flex flex-row gap-x-1 items-center">
+                                    <div className="flex flex-row flex-wrap gap-x-1 items-center">
                                         <input type="email" className="px-3 py-2.5 font-epilogue bg-white text-neutral border-0 outline-0 focus:outline-0" placeholder="Email address" />
                                         <button className='cursor-pointer text-white border-0 bg-primary px-5 py-3 font-epilogue font-semibold text-sm'>
                                             Subscribe

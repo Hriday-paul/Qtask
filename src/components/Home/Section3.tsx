@@ -25,7 +25,7 @@ function Section3() {
 
 export default Section3;
 
-const categoryList = [
+export const categoryList = [
     {
         id: 1,
         title: "Desing",

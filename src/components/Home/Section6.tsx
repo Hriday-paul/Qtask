@@ -8,7 +8,7 @@ import pattern from "../../../public/home/sec6/Pattern.png"
 function Section6() {
     return (
         <div className='bg-[#F8F8FD]'>
-            <div className='container pt-8 relative'>
+            <div className='container pt-8 relative overflow-x-hidden'>
                 <div className='flex flex-row justify-between items-center py-2 md:py-4 lg:py-5 z-10'>
                     <h2 className='font-clash text-2xl md:text-3xl lg:text-4xl font-semibold text-neutral z-10'>Latest <span className='text-secondary'>jobs open</span></h2>
                     <Link href="/jobs" className='text-sm md:text-base text-primary font-epilogue font-medium flex flex-row gap-x-3 items-center group z-10'>Show All Jobs <FaArrowRight className=' duration-200' /></Link>
