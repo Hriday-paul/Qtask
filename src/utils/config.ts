@@ -29,8 +29,61 @@ export const divisions = [
 ];
 
 export const educations = [
-  { "id": 6, "name": "Bachelor's Degree", value : "bsc" },
-  { "id": 7, "name": "Master's Degree", value : "msc" },
-  { "id": 5, "name": "Diploma", value : "diploma"  },
-  { "id": 9, "name": "PhD / Doctorate", value : "phd"  }
+  { "id": 6, "name": "Bachelor's Degree", value: "bsc" },
+  { "id": 7, "name": "Master's Degree", value: "msc" },
+  { "id": 5, "name": "Diploma", value: "diploma" },
+  { "id": 9, "name": "PhD / Doctorate", value: "phd" }
+]
+
+export type JobCategory =
+  | "DESIGN"
+  | "SALES"
+  | "MARKETING"
+  | "FINANCE"
+  | "TECHNOLOGY"
+  | "ENGINEERING"
+  | "BUSINESS"
+  | "HUMAN_RESOURCE";
+
+export const categories = [
+  {
+    id: 1,
+    label: "Desing",
+    value: "DESIGN"
+  },
+  {
+    id: 2,
+    label: "Sales",
+    value: "SALES"
+  },
+  {
+    id: 3,
+    label: "Marketing",
+    value: "MARKETING"
+  },
+  {
+    id: 4,
+    label: "Finance",
+    value: "FINANCE"
+  },
+  {
+    id: 5,
+    label: "Technology",
+    value: "TECHNOLOGY"
+  },
+  {
+    id: 6,
+    label: "Engineering",
+    value: "ENGINEERING"
+  },
+  {
+    id: 7,
+    label: "Business",
+    value: "BUSINESS"
+  },
+  {
+    id: 8,
+    label: "Human Resource",
+    value: "HUMAN_RESOURCE"
+  }
 ]

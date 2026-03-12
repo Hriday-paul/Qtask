@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import localFont from "next/font/local"
 import Navbar from "@/shared/Navbar/Navbar";
 import Footer from "@/shared/Navbar/Footer/Footer";
+import ReduxProvider from "@/shared/ReduxProvider";
 
 const epilogue = Epilogue({
   variable: "--font-epilogue",
@@ -104,12 +105,9 @@ export default function RootLayout({
         />
         {/* <NextJsTopLoader /> */}
 
-        <Navbar />
-        <div className="">
+        <ReduxProvider>
           {children}
-        </div>
-        <Footer />
-
+        </ReduxProvider>
 
       </body>
     </html>

@@ -2,36 +2,31 @@
 
 import { revalidateTag } from "next/cache"
 import { serverQueryWithReauth } from "../services/Mutation.Ad";
+import { tags } from "../Tags";
 
-export const postNewAdd = async ({ payload, endPoint, tags }: { payload: FormData | string, endPoint: string, tags: string[] }) => {
+export const postNewJob = async ({ payload }: { payload: FormData | string }) => {
 
-    const res = await serverQueryWithReauth({ payload, endPoint, method : "POST" });
+    const res = await serverQueryWithReauth({ payload, endPoint: "/jobs", method: "POST" });
 
-    for (let tag of tags) {
-        revalidateTag(tag, "max");
-    }
-
-    return res;
-}
-
-export const updateAdd = async ({ payload, endPoint, tags }: { payload: FormData | string, endPoint: string, tags: string[] }) => {
-
-    const res = await serverQueryWithReauth({ payload, endPoint, method : "PATCH" });
-
-    for (let tag of tags) {
-        revalidateTag(tag, "max");
-    }
+    revalidateTag(tags.jobs, "max");
 
     return res;
 }
 
-export const DeleteAdd = async ({ payload, endPoint, tags }: { payload: FormData | string, endPoint: string, tags: string[] }) => {
+export const updateJob = async ({ payload, endPoint }: { payload: FormData | string, endPoint: string }) => {
 
-    const res = await serverQueryWithReauth({ payload, endPoint, method : "DELETE" });
+    const res = await serverQueryWithReauth({ payload, endPoint, method: "PATCH" });
 
-    for (let tag of tags) {
-        revalidateTag(tag, "max");
-    }
+    revalidateTag(tags.jobs, "max");
+
+    return res;
+}
+
+export const DeleteJob = async ({ payload, endPoint }: { payload: FormData | string, endPoint: string }) => {
+
+    const res = await serverQueryWithReauth({ payload, endPoint, method: "DELETE" });
+
+    revalidateTag(tags.jobs, "max");
 
     return res;
 }

@@ -1,16 +1,17 @@
 import { config } from "@/utils/config";
+import { tags } from "../Tags";
 
-export const GetAdsByCategory = async ({ endPoint, query, tags }: { endPoint: string, query: { [key: string]: string }, tags: string[] }) => {
+export const GetJobs = async ({ query }: { query: { [key: string]: string } }) => {
 
   try {
 
     const queryString = query ? `?${new URLSearchParams(query).toString()}` : "";
 
     const response = await fetch(
-      config.serverBaseApi + endPoint + queryString,
+      config.serverBaseApi + "/jobs" + queryString,
       {
         next: {
-          tags,
+          tags: [tags.jobs],
         },
       }
     );
@@ -19,7 +20,7 @@ export const GetAdsByCategory = async ({ endPoint, query, tags }: { endPoint: st
       const errorData = await response.json().catch(() => null);
 
       throw new Error(
-        errorData?.message || "Failed to load ads"
+        errorData?.message || "Failed to load jobs"
       );
     }
     const res = response.json();
