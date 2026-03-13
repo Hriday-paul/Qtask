@@ -1,9 +1,23 @@
-import React from 'react'
+import LoginForm from "@/components/Auth/LoginForm";
+import { Metadata } from "next";
 
-function AdminLogin() {
+export const metadata: Metadata = {
+  title: "Admin Login",
+  description: "Admin login for RunBd.",
+};
+
+const LoginPage = () => {
   return (
-    <div>AdminLogin</div>
-  )
-}
+    <div className='min-h-screen lg:h-auto w-full bg-red-white flex flex-row items-center'>
 
-export default AdminLogin
+      <div className="w-full">
+        <div className="bg-white max-w-md border border-stroke rounded shadow p-8 mx-auto">
+          <LoginForm />
+        </div>
+      </div>
+
+    </div>
+  );
+};
+
+export default LoginPage;

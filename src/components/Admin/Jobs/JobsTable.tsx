@@ -18,6 +18,10 @@ import { IMeta, Job } from "../../../../types/job";
 import { SquarePen, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
+import EditJob from "./EditJob";
+import FeatureJob from "./FeatureJob";
+import DeleteAJob from "./DeleteJob";
+import SearchParamsPagination from "@/components/Jobs/SearchParamsPagination";
 
 async function JobsTable({ jobPromise, page }: { jobPromise: Promise<{ data: { data: Job[], meta: IMeta } }>, page: number }) {
 
@@ -27,7 +31,7 @@ async function JobsTable({ jobPromise, page }: { jobPromise: Promise<{ data: { d
         <div className="pb-8">
             <Table className="font-epilogue">
                 <TableHeader className="bg-primary/5 font-epilogue ">
-                    <TableRow className="">
+                    <TableRow className="border border-stroke">
                         <TableHead className="p-5 font-medium font-epilogue">Title</TableHead>
                         <TableHead className="font-medium font-epilogue">Category</TableHead>
                         <TableHead className="font-medium font-epilogue">Company</TableHead>
@@ -62,7 +66,7 @@ async function JobsTable({ jobPromise, page }: { jobPromise: Promise<{ data: { d
                                 </Badge>
                             </TableCell>
 
-                            <TableCell className="text-right p-5">
+                            <TableCell className="text-right p-4">
 
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild className="outline-none focus:outline-none">
@@ -72,29 +76,16 @@ async function JobsTable({ jobPromise, page }: { jobPromise: Promise<{ data: { d
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent className="z-40 bg-white font-epilogue min-w-40" align="end" >
 
-
-
-                                        <DropdownMenuItem asChild className="hover:bg-zinc-100 duration-150 w-full">
-                                            {/* <EditPost defaultData={ad} clicker={
-                                                <div className=''>
-                                                    <SquarePen className='text-black size-4' />
-                                                    Edit
-                                                </div>
-                                            }></EditPost> */}
-                                            <button
-                                                className='w-full font-epilogue flex flex-row gap-x-2 items-center cursor-pointer'>
-                                                <SquarePen className='text-black size-4' />
-                                                Edit
-                                            </button>
+                                        <DropdownMenuItem asChild className="hover:bg-zinc-100 duration-150">
+                                            <FeatureJob jobId={job?.id} />
                                         </DropdownMenuItem>
 
+                                        <DropdownMenuItem asChild className="hover:bg-zinc-100 duration-150 w-full">
+                                            <EditJob defaultData={job} />
+                                        </DropdownMenuItem>
 
                                         <DropdownMenuItem asChild className="hover:bg-zinc-100 duration-150">
-                                            <button
-                                                className='w-full font-epilogue flex flex-row gap-x-2 items-center cursor-pointer'>
-                                                <Trash2 className='text-red-500' />
-                                                Delete
-                                            </button>
+                                            <DeleteAJob jobId={job?.id} />
                                         </DropdownMenuItem>
 
                                     </DropdownMenuContent>
@@ -114,6 +105,10 @@ async function JobsTable({ jobPromise, page }: { jobPromise: Promise<{ data: { d
                     <h5 className='text-base font-epilogue text-center'>No Job posted yet</h5>
                 </section>
             }
+
+            {jobs?.data?.meta?.total > 0 && <div className="mt-3">
+                <SearchParamsPagination totalData={jobs?.data?.meta?.totalPage || 1} activePage={Number(page) || 1} />
+            </div>}
 
         </div >
     )

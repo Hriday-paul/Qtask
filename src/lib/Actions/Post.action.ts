@@ -27,6 +27,7 @@ export const DeleteJob = async ({ payload, endPoint }: { payload: FormData | str
     const res = await serverQueryWithReauth({ payload, endPoint, method: "DELETE" });
 
     revalidateTag(tags.jobs, "max");
+    revalidateTag(tags.featureJobs, "max");
 
     return res;
 }

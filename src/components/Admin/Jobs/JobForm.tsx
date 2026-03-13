@@ -2,8 +2,6 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { ImSpinner2 } from 'react-icons/im';
 import { toast } from 'react-toastify';
-import Swal from 'sweetalert2';
-import { tags } from '@/lib/Tags';
 import { useRouter } from 'next/navigation';
 import { Job } from '../../../../types/job';
 import { SelectWithSearch } from '@/components/ui/SelectWithSearch';
@@ -23,8 +21,8 @@ type FieldType = {
     gender: string[],
     education: string[],
 
-    salaryMin: string,
-    salaryMax: string,
+    salaryMin: string | null,
+    salaryMax: string | null,
 
     division: string,
     street: string,
@@ -37,7 +35,7 @@ type FieldType = {
     benefits: string
 }
 
-function JobForm({ defaultData, setOpen }: { defaultData?: Job, setOpen?: React.Dispatch<React.SetStateAction<boolean>> }) {
+function JobForm({ defaultData }: { defaultData?: Job }) {
 
     const { isLoading: companyLoading, isSuccess, data } = useAllcompaniesQuery();
 
@@ -57,7 +55,6 @@ function JobForm({ defaultData, setOpen }: { defaultData?: Job, setOpen?: React.
         try {
 
             if (defaultData) {
-                // await updateAd({ id: defaultData?.id, body: form }).unwrap();
                 const updatedRes = await updateJob({ endPoint: `/jobs/${defaultData?.id}`, payload: JSON.stringify(data) });
                 if (updatedRes?.redirect) {
                     router.push("/admin/auth/login");
@@ -69,8 +66,6 @@ function JobForm({ defaultData, setOpen }: { defaultData?: Job, setOpen?: React.
                 }
 
             } else {
-
-                // await postJob(data).unwrap();
                 const postedRes = await postNewJob({
                     payload: JSON.stringify(data),
                 });
@@ -85,29 +80,9 @@ function JobForm({ defaultData, setOpen }: { defaultData?: Job, setOpen?: React.
                 }
             }
 
-            Swal.fire({
-                title: `Job ${defaultData ? "updated" : "posted"} successfully!`,
-                text: `Your Job ${defaultData ? "updated" : "posted"} successfully`,
-                customClass: {
-                    title: "text-2xl text-black font-epilogue",
-                    container: "text-sm font-medium font-epilogue text-zinc-900",
-                    cancelButton: "!bg-primary text-white",
-                    confirmButton: "!bg-primary text-white"
-                },
-                icon: 'success',
-                showCancelButton: true,
-                showConfirmButton: false,
-                confirmButtonText: "Close",
-                confirmButtonColor: "#38CB6E",
-                cancelButtonText: "Close",
-            })
+            toast.success(`Job ${defaultData ? "updated" : "posted"} successfully!`);
 
             if (defaultData) {
-
-                if (setOpen) {
-                    setOpen(false)
-                }
-
                 return;
             }
 
@@ -122,8 +97,8 @@ function JobForm({ defaultData, setOpen }: { defaultData?: Job, setOpen?: React.
                 gender: [],
                 education: [],
 
-                salaryMin: "",
-                salaryMax: "",
+                salaryMin: null,
+                salaryMax: null,
 
                 division: "",
                 street: "",
@@ -150,7 +125,7 @@ function JobForm({ defaultData, setOpen }: { defaultData?: Job, setOpen?: React.
 
                 {/* ----------title------------ */}
                 <div className="w-full mx-auto mb-3">
-                    <label htmlFor='country' className="mb-1.5 block text-black dark:text-white font-epilogue">
+                    <label htmlFor='title' className="mb-1.5 block text-black dark:text-white font-epilogue">
                         Job Title
                         <span className="text-red-500 text-base ml-1">*</span>
                     </label>
@@ -314,6 +289,7 @@ function JobForm({ defaultData, setOpen }: { defaultData?: Job, setOpen?: React.
                                         value: /^[0-9]+$/,
                                         message: "Invalid format",
                                     },
+                                    setValueAs: (value) => value === "" ? null : value,
                                 }
                             )}
                             placeholder="eg : 20,000"
@@ -335,7 +311,8 @@ function JobForm({ defaultData, setOpen }: { defaultData?: Job, setOpen?: React.
                                     pattern: {
                                         value: /^[0-9]+$/,
                                         message: "Invalid format",
-                                    }
+                                    },
+                                    setValueAs: (value) => value === "" ? null : value,
                                 }
                             )}
                             placeholder="eg : 20,000"

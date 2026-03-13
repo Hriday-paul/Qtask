@@ -33,7 +33,7 @@ const PasswordInput = <T extends Record<string, any>>({
 
     return (
         <>
-            <label htmlFor={name} className={`mb-1.5 font-popin block text-black ${!isLarge ? "text-sm" : ""}`}>
+            <label htmlFor={name} className={`mb-1.5 font-epilogue block text-black ${!isLarge ? "text-sm" : ""}`}>
                 {label}
                 <span className="text-red-500 text-base ml-1">*</span>
             </label>
@@ -47,9 +47,9 @@ const PasswordInput = <T extends Record<string, any>>({
                         ref(e); // connect RHF ref
                         inputRef.current = e; // also store local ref
                     }}
-                    className={`pr-10 w-full ${!isLarge ? "rounded-sm" : "rounded-md"} border bg-white py-2.5 px-4 text-black outline-none transition disabled:cursor-default disabled:bg-whiter dark:bg-form-input font-figtree placeholder:font-poppins ${errors?.[name]
+                    className={`pr-10 w-full ${!isLarge ? "rounded-sm" : "rounded"} border  bg-white py-2.5 px-4 text-black outline-none transition disabled:cursor-default disabled:bg-whiter dark:bg-form-input font-epilogue placeholder:font-epilogue ${errors?.[name]
                         ? "border-danger"
-                        : "border-stroke"
+                        : "border-strokeinput focus:border-black active:border-black"
                         } ${!isLarge ? "text-sm" : ""}`}
                 />
                 <div className="absolute right-0 inset-y-0 flex items-center cursor-pointer" onClick={handleVisible}>

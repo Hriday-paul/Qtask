@@ -1,11 +1,14 @@
 import { config } from "@/utils/config";
+import { tags } from "../Tags";
 
-const GetSimilarAd = async ({ id }: { id: string }) => {
+const GetFeatureAds = async () => {
     try {
         const response = await fetch(
-            config.serverBaseApi + `/ads/similar/${id}`,
+            config.serverBaseApi + `/feature-ads`,
             {
-                next: { revalidate: 10 }
+                next: {
+                    tags: [tags.featureJobs],
+                },
             }
         );
         if (!response.ok) {
@@ -19,4 +22,4 @@ const GetSimilarAd = async ({ id }: { id: string }) => {
     }
 };
 
-export default GetSimilarAd;
+export default GetFeatureAds;

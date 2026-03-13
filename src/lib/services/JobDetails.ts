@@ -1,9 +1,9 @@
 import { config } from "@/utils/config";
 
-const GetAdDetails = async ({ id }: { id: string }) => {
+const GetJobDetails = async ({ id }: { id: string }) => {
   try {
     const response = await fetch(
-      config.serverBaseApi + `/ads/details/${id}`,
+      config.serverBaseApi + `/jobs/${id}`,
     );
     if (!response.ok) {
       // This will activate the closest `error.js` Error Boundary
@@ -16,4 +16,4 @@ const GetAdDetails = async ({ id }: { id: string }) => {
   }
 };
 
-export default GetAdDetails;
+export default GetJobDetails;

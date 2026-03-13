@@ -1,5 +1,4 @@
-import AdminNavbar from "@/components/Admin/Sidebar/AdminNavbar";
-import AdminSidebar from "@/components/Admin/Sidebar/Sidebar";
+
 import { SidebarProvider } from "@/components/ui/sidebar";
 
 
@@ -10,13 +9,7 @@ function AdminDashboardLayout({
 }>) {
     return (
         <SidebarProvider >
-            <AdminSidebar />
-            <main className="w-full">
-                <AdminNavbar />
-                <div className="p-5">
-                    {children}
-                </div>
-            </main>
+            {children}
         </SidebarProvider>
     )
 }

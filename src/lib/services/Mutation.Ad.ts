@@ -2,13 +2,13 @@
 import { config } from "@/utils/config";
 import { cookies } from "next/headers";
 
-export const serverQueryWithReauth = async ({ payload, endPoint, method }: { payload: FormData | string, endPoint: string, method: string }) => {
+export const serverQueryWithReauth = async ({ payload, endPoint, method, tags = [] }: { payload: FormData | string, endPoint: string, method: string, tags?: string[] }) => {
     const cookieStore = await cookies()
     const accessToken = cookieStore.get("accessToken")?.value;
     const refreshToken = cookieStore.get('refreshToken')?.value;
 
     const makeRequest = async (token?: string) => {
-        
+
         return fetch(
             config.serverBaseApi + endPoint,
             {
@@ -21,7 +21,10 @@ export const serverQueryWithReauth = async ({ payload, endPoint, method }: { pay
                         : {}),
 
                 },
-                body: payload
+                body: payload,
+                next: {
+                    tags
+                }
             }
         );
     };
