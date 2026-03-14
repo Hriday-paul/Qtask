@@ -31,10 +31,10 @@ export const divisions = [
 ];
 
 export const educations = [
-  { "id": 60, "name": "Bachelor's Degree", value: "bsc" },
-  { "id": 61, "name": "Master's Degree", value: "msc" },
-  { "id": 62, "name": "Diploma", value: "diploma" },
-  { "id": 63, "name": "PhD / Doctorate", value: "phd" }
+  { "id": 60, "name": "Bachelor's Degree", value: "BSC" },
+  { "id": 61, "name": "Master's Degree", value: "MSC" },
+  { "id": 62, "name": "Diploma", value: "Diploma" },
+  { "id": 63, "name": "PhD / Doctorate", value: "Phd" }
 ]
 
 export type JobCategory =

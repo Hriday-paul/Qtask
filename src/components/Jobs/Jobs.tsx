@@ -25,6 +25,7 @@ async function Jobs({ adsPromise, page, limit, sort }: { adsPromise: Promise<{ d
                 </p>
                 <SortBar limit={limit} sort={sort} />
             </div>
+            
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
                 {data?.data?.data?.map(job => {
                     return <JobCard key={job?.id} job={job} />

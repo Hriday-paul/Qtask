@@ -3,8 +3,6 @@ import { Epilogue } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import localFont from "next/font/local"
-import Navbar from "@/shared/Navbar/Navbar";
-import Footer from "@/shared/Navbar/Footer/Footer";
 import ReduxProvider from "@/shared/ReduxProvider";
 
 const epilogue = Epilogue({
@@ -21,30 +19,40 @@ const clashDispaly = localFont({
 export const metadata: Metadata = {
   title: {
     template: '%s | QuickHire',
-    default: 'QuickHire',
+    default: 'QuickHire - Find Your Dream Job in Bangladesh',
   },
-  description: "Runbd providing best Car Buy/Sell, Bike Buy/Sell, Car Rent, Workshops, Accessories, Exchange, Lawyer, Job & Services — All in One Click. Skip the hassle and delays — easily buy, sell, or access essential services anytime from one reliable and secure platform.",
+  description: "QuickHire is Bangladesh's leading job portal — find full-time, part-time, remote, and freelance jobs across all industries. Post jobs, apply instantly, and connect with top employers. Your next career move starts here.",
 
-  keywords: ["runbd", "Runbd", "রানবিডি", "রান", "car", "buy", "sell", "rent", "car rent", "car sell", "car buy", "bike buy", "bike sell", "bike", "bikes", "job", "jobs", "exchange", "workshop", "accessories", "exchange", "lawyer", "bangladesh cars", "used car", "used bike", "new car", "new bike", "bangladesh bike", "bangladesh workshop", "bangladesh lawyer", "গাড়ি", "নতুন গাড়ি", "পুরাতন গাডি", "গাড়ি বিক্রয়", "গাড়ি বিক্রি", "গাড়ি ক্রয়", "গাড়ি ভাড়া", "বাইক বিক্রয়", "বাইক বিক্রি", "বাইক ক্রয়", "মটরসাইকেল", "মটরসাইকেল বিক্রি", "মটরসাইকেল ক্রয়", "চাকরি", "ওয়ার্কশপ", "গাড়ির সরঞ্জাম", "উকিল", "বাইসাইকেল", "এক্সচেঞ্জ"],
+  keywords: [
+    // English
+    "quickhire", "QuickHire", "job", "jobs", "job portal", "job board",
+    "find job", "job search", "apply job", "job circular", "career",
+    "recruitment", "hiring", "employer", "employee", "resume", "cv",
+    "full time job", "part time job", "remote job", "freelance job",
+    "bangladesh job", "dhaka job", "job vacancy", "job opportunity",
+    "entry level job", "fresher job", "experienced job", "government job",
+    "private job", "ngo job", "it job", "software job", "engineering job",
+  ],
 
-  metadataBase: new URL('https://runbd.org'),
+  metadataBase: new URL('https://quickhire.com'),
 
   openGraph: {
-    title: 'Runbd - Buy/Sell & Services in Bangladesh',
-    description: 'Skip the hassle and delays — easily buy, sell, or access essential services anytime from one reliable and secure platform - Runbd.',
-    url: 'https://runbd.org',
-    siteName: 'Runbd',
-    images: ["https://runbd.org/og-image.png"],
-    locale: 'bn_BD',
+    title: 'QuickHire - Find Your Dream Job in Bangladesh',
+    description: "Bangladesh's leading job portal — find full-time, part-time, remote, and freelance jobs. Connect with top employers and apply instantly.",
+    url: 'https://quickhire.com',
+    siteName: 'QuickHire',
+    images: ["https://quickhire.com/og-image.png"],
     type: 'website',
   },
+
   twitter: {
     card: 'summary_large_image',
-    title: 'Runbd - Buy/Sell & Services in Bangladesh',
-    description: 'Skip the hassle and delays — easily buy, sell, or access essential services anytime from one reliable and secure platform - Runbd.',
-    creator: '@runbd',
-    images: ['https://runbd.org/og-image.png'],
+    title: 'QuickHire - Find Your Dream Job in Bangladesh',
+    description: "Bangladesh's leading job portal — find full-time, part-time, remote, and freelance jobs. Connect with top employers and apply instantly.",
+    creator: '@quickhire',
+    images: ['https://quickhire.com/og-image.png'],
   },
+
   robots: {
     index: true,
     follow: true,

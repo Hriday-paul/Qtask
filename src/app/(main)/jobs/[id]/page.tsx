@@ -1,9 +1,44 @@
+import DetailSkeleton from "@/components/Jobs/DetailSkeleton";
 import JobDetails from "@/components/Jobs/JobDetails"
+import GetJobDetails from "@/lib/services/JobDetails";
 import PageTop from "@/shared/PageTop"
+import { TextTruncate } from "@/utils/TextTruncate";
 import Link from "next/link"
+import { Suspense } from "react";
 import { IoIosArrowForward } from "react-icons/io"
+import { Job } from "../../../../../types/job";
 
-function JobDetailsPage() {
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const { data } = await GetJobDetails({ id }) as { data: Job };
+
+  return {
+    title: `${data?.title} at ${data?.company?.name}`,
+    description: TextTruncate(data?.description, 155),
+    metadataBase: new URL('https://quickhire.com'),
+    
+    openGraph: {
+      title: TextTruncate(`${data?.title} at ${data?.company?.name}`, 60),
+      description: TextTruncate(data?.description, 155),
+      url: `/jobs/${data?.id}`,
+      siteName: 'QuickHire',
+      type: 'website',
+      creator: "QuickHire",
+      publisher: "QuickHire"
+    },
+    twitter: {
+      title: TextTruncate(`${data?.title} at ${data?.company?.name}`, 60),
+      description: TextTruncate(data?.description, 155),
+      card: 'summary_large_image',
+      creator: '@quickhire',
+    },
+  }
+}
+
+async function JobDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    const jobPromise = GetJobDetails({ id });
+
     return (
         <div>
             <PageTop title='Job Details'>
@@ -11,7 +46,10 @@ function JobDetailsPage() {
                     <Link href='/' className='font-epilogue'>Home</Link> <IoIosArrowForward className='' /> <Link href='/jobs' className='font-epilogue'>Jobs</Link> <IoIosArrowForward className='' /> <p className='font-epilogue'>Jobs Details</p>
                 </h3>
             </PageTop>
-            <JobDetails />
+
+            <Suspense fallback={<DetailSkeleton />}>
+                <JobDetails jobPromise={jobPromise} />
+            </Suspense>
         </div>
     )
 }

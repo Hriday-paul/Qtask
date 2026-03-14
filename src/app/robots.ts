@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/user/', '/vendor/', "/profile/"],
+      disallow: ['/admin/'],
     },
     sitemap: 'https://runbd.com/sitemap.xml',
   }

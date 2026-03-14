@@ -2,7 +2,7 @@
 import { config } from "@/utils/config";
 import { cookies } from "next/headers";
 
-export const serverQueryWithReauth = async ({ payload, endPoint, method, tags = [] }: { payload: FormData | string, endPoint: string, method: string, tags?: string[] }) => {
+export const serverQueryWithReauth = async ({ payload, endPoint, method, tags = [] }: { payload ?: FormData | string, endPoint: string, method: string, tags?: string[] }) => {
     const cookieStore = await cookies()
     const accessToken = cookieStore.get("accessToken")?.value;
     const refreshToken = cookieStore.get('refreshToken')?.value;

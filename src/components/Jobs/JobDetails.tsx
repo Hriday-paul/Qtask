@@ -1,54 +1,30 @@
 import Image from 'next/image'
 import { CiLocationOn } from "react-icons/ci";
 import { MdOutlinePhone } from 'react-icons/md';
+import { Job } from '../../../types/job';
+import { notFound } from 'next/navigation';
+import { getImageUrl } from '@/utils/imageUrl';
+import { TbWorld } from 'react-icons/tb';
+import ApplyJob from './ApplyJob';
+import moment from 'moment';
 
-const demoJob = {
-  job_type: "Full Time",
-  category: "Software Development",
-  salary: "৳50,000 - ৳70,000 / month",
-  experience: "2-3 Years",
-  gender: "Male/Female",
-  education: "Bachelor's Degree in Computer Science",
-  createdAt: "2026-03-05",
-  dedline: "2026-03-30",
+async function JobDetails({ jobPromise }: { jobPromise: Promise<{ data: Job }> }) {
 
-  description: `We are looking for a passionate Full Stack Developer to join our growing team.
-You will work on building scalable web applications and collaborate with designers,
-product managers, and backend engineers to deliver high-quality software solutions.`,
+  const job = await jobPromise;
 
-  responsibilities: `• Develop and maintain web applications using React / Next.js
-• Integrate REST APIs with frontend systems
-• Write clean, maintainable, and scalable code
-• Collaborate with team members in code reviews
-• Debug issues and improve application performance`,
-
-  requirements: `• Bachelor's degree in Computer Science or related field
-• 2+ years experience with React or Next.js
-• Strong knowledge of JavaScript, TypeScript, HTML, and CSS
-• Experience working with REST APIs
-• Familiarity with Git version control`,
-
-  workingHours: `Sunday - Thursday
-9:00 AM - 6:00 PM`,
-
-  benefits: `• Competitive salary package
-• Two festival bonuses
-• Friendly and collaborative work environment
-• Opportunity for career growth
-• Annual performance bonus`
-};
-
-function JobDetails() {
+  if (!job?.data) {
+    return notFound();
+  }
 
   const summeryRows = [
-    { label: "Job Type", value: (job: any) => job?.job_type },
-    { label: "Category", value: (job: any) => job?.category },
-    { label: "Salary", value: (job: any) => job?.salary },
-    { label: "Experience", value: (job: any) => job?.experience },
-    { label: "Gender", value: (job: any) => job?.gender },
-    { label: "Education", value: (job: any) => job?.education },
-    { label: "Posted", value: (job: any) => job?.createdAt },
-    { label: "Application End", value: (job: any) => job?.dedline },
+    { label: "Job Type", value: (job: Job) => job?.job_type ?? "N/A" },
+    { label: "Category", value: (job: Job) => job?.category },
+    { label: "Salary", value: (job: Job) => job?.salaryMin ?? "N/A" },
+    { label: "Experience", value: (job: Job) => job?.experience ?? "N/A" },
+    { label: "Gender", value: (job: Job) => job?.gender?.join(", ") ?? "N/A" },
+    { label: "Education", value: (job: Job) => job?.education?.join(", ") ?? "N/A" },
+    { label: "Posted", value: (job: Job) => { moment(job?.createdAt).format("DD/MM/YY h:mm a") ?? "N/A" } },
+    { label: "Application End", value: (job: Job) => job?.deadline ?? "N/A" },
   ];
 
   return (
@@ -58,26 +34,24 @@ function JobDetails() {
         <div className='flex flex-col md:flex-row gap-5 justify-between items-center'>
 
           <div className='flex flex-col md:flex-row justify-center md:justify-start gap-8 items-center'>
-            <Image src={"/home/sec5/company1.png"} alt='Company Logo' height={1000} width={1000} className='h-28 w-auto rounded-lg' />
+            <Image src={getImageUrl(job?.data?.company?.logo)} alt='Company Logo' height={1000} width={1000} className='h-28 w-auto rounded-lg' />
             <div className='space-y-2 md:text-left text-center'>
-              <h3 className='font-clash font-semibold text-2xl text-neutral'>Senior Software Developer</h3>
-              <p className='text-primary text-lg font-epilogue font-medium'>Qtech Solution</p>
+              <h3 className='font-clash font-semibold text-2xl text-neutral'>{job?.data?.title}</h3>
+              <p className='text-primary text-lg font-epilogue font-medium'>{job?.data?.company?.name}</p>
               <div className='flex flex-row gap-x-5 items-center'>
                 <div className='flex flex-row gap-x-0.5 items-center text-neutral/80'>
                   <CiLocationOn />
-                  <p className='font-epilogue'>New York, USA</p>
+                  <p className='font-epilogue'>{job?.data?.street ?? job?.data?.division}</p>
                 </div>
                 <div className='flex flex-row gap-x-0.5 items-center text-neutral/80'>
-                  <MdOutlinePhone />
-                  <p className='font-epilogue'>+8801892814892</p>
+                  <TbWorld />
+                  <p className='font-epilogue'>{job?.data?.company?.website ?? "N/A"}</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <button className='cursor-pointer text-white border-0 hover:bg-primary/80 duration-150 bg-primary px-5 py-3 font-epilogue font-bold'>
-            Apply Now
-          </button>
+          <ApplyJob />
 
         </div>
       </div>
@@ -87,32 +61,25 @@ function JobDetails() {
 
           <div className='my-8'>
             <h3 className='text-2xl font-clash font-medium mb-3 text-neutral'>Description : </h3>
-            <pre className='text-sm text-neutral/80 font-normal font-epilogue'>{demoJob?.description}</pre>
+            <pre className='text-sm text-neutral/80 font-normal font-epilogue'>{job?.data?.description}</pre>
           </div>
 
           <div className='my-8'>
             <h3 className='text-2xl font-clash font-medium mb-3 text-neutral'>Responsibilities : </h3>
-            <pre className='text-sm text-neutral/80 font-normal font-epilogue'>{demoJob?.responsibilities}</pre>
+            <pre className='text-sm text-neutral/80 font-normal font-epilogue'>{job?.data?.responsibilities}</pre>
           </div>
 
           <div className='my-8'>
             <h3 className='text-2xl font-clash font-medium mb-3 text-neutral'>Requirements : </h3>
-            <pre className='text-sm text-neutral/80 font-normal font-epilogue'>{demoJob?.requirements}</pre>
-          </div>
-
-          <div className='my-8'>
-            <h3 className='text-2xl font-clash font-medium mb-3 text-neutral'>Working Hours : </h3>
-            <pre className='text-sm text-neutral/80 font-normal font-epilogue'>{demoJob?.workingHours}</pre>
+            <pre className='text-sm text-neutral/80 font-normal font-epilogue'>{job?.data?.requirements}</pre>
           </div>
 
           <div className='my-8'>
             <h3 className='text-2xl font-clash font-medium mb-3 text-neutral'>Benefits : </h3>
-            <pre className='text-sm text-neutral/80 font-normal font-epilogue'>{demoJob?.benefits}</pre>
+            <pre className='text-sm text-neutral/80 font-normal font-epilogue'>{job?.data?.benefits}</pre>
           </div>
 
-          <button className='cursor-pointer text-white border-0 hover:bg-primary/80 duration-150 bg-primary px-5 py-3 font-epilogue font-bold'>
-            Apply Now
-          </button>
+          <ApplyJob />
 
         </div>
 
@@ -132,7 +99,7 @@ function JobDetails() {
                   </td>
 
                   <td className="text-sm font-medium text-neutral/80 font-epilogue py-3">
-                    {row.value(demoJob) ?? "N/A"}
+                    {row.value(job?.data) ?? "N/A"}
                   </td>
                 </tr>
               ))}

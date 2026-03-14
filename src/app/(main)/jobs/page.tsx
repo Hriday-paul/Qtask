@@ -6,6 +6,30 @@ import { Suspense } from 'react'
 import Searchbar from '@/components/Jobs/SearchBar'
 import { GetJobs } from '@/lib/services/Quary.Jobs'
 import Jobs from '@/components/Jobs/Jobs'
+import LoadingJobCard from '@/components/Jobs/LoadingJobCard'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "Browse All Jobs",
+  description: "Browse thousands of job listings in Bangladesh on QuickHire. Find full-time, part-time, remote, and freelance jobs across all industries. Apply instantly and land your dream job today!",
+  metadataBase: new URL('https://quickhire.com'),
+  
+  openGraph: {
+    title: 'Browse All Jobs in Bangladesh | QuickHire',
+    description: 'Browse thousands of job listings in Bangladesh on QuickHire. Find full-time, part-time, remote, and freelance jobs across all industries. Apply instantly!',
+    url: '/jobs',
+    siteName: 'QuickHire',
+    images: ['/og-image.png'],
+    type: 'website',
+  },
+  twitter: {
+    title: 'Browse All Jobs in Bangladesh | QuickHire',
+    description: 'Browse thousands of job listings in Bangladesh on QuickHire. Find full-time, part-time, remote, and freelance jobs across all industries. Apply instantly!',
+    card: 'summary_large_image',
+    creator: '@quickhire',
+    images: ['/og-image.png'],
+  },
+}
 
 async function JobsPage({
   searchParams: ssp,
@@ -67,7 +91,12 @@ async function JobsPage({
             <div>
               <Searchbar />
 
-              <Suspense fallback={<div />}>
+              <Suspense fallback={<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+                <LoadingJobCard />
+                <LoadingJobCard />
+                <LoadingJobCard />
+                <LoadingJobCard />
+              </div>}>
                 <Jobs adsPromise={jobsPromise} limit={limit} page={Number(page)} sort={sort} />
               </Suspense>
 

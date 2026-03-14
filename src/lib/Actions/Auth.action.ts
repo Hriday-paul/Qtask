@@ -45,3 +45,15 @@ export const Singin = async (payload: string) => {
 
     return res;
 };
+
+export const Logout = async () => {
+
+    const cookieStore = await cookies();
+
+    // Remove access & refresh token from cookie
+    cookieStore.delete('accessToken');
+
+    cookieStore.delete('refreshToken');
+
+    return;
+};

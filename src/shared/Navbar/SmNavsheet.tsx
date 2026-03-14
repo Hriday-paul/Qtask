@@ -7,34 +7,23 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
-
-import { Link } from '@/i18n/navigation';;
 import { RiMenu3Fill } from 'react-icons/ri';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 import { motion } from "motion/react"
 import { navitems } from './Navbar';
 import Image from 'next/image';
 import logo from "../../../public/logo.png"
-import { usePathname, useRouter } from "@/i18n/navigation";
-import { useLocale } from "next-intl";
+import Link from "next/link";
 
 
 const SmNavSheet = () => {
-    const router = useRouter();
-    const locale = useLocale();
-    const pathname = usePathname();
 
     const routes = navitems;
-
-    const handleSwitchLocal = () => {
-        const newLocale = locale == "en" ? "bn" : "en";
-        router.push(pathname, { locale: newLocale });
-    }
 
     return (
         <div>
             <Sheet>
-                <SheetTrigger className='border border-zinc-200 p-1 md:p-1.5 rounded cursor-pointer hover:bg-zinc-100 duration-150'>
+                <SheetTrigger className='border border-zinc-200 p-1.5 md:p-2 rounded-full bg-white cursor-pointer hover:bg-zinc-100 duration-150'>
                     <RiMenu3Fill className="text-xl md:text-2xl text-black" />
                 </SheetTrigger>
                 <SheetContent side={'left'}>
@@ -71,10 +60,6 @@ const SmNavSheet = () => {
                                     })
                                 }
                             </ul>
-
-                            <button onClick={handleSwitchLocal} className=" border border-primary/40 rounded px-2 py-1 font-popin text-xs">
-                                {locale == "en" ? "বাংলা" : "English"}
-                            </button>
 
                         </div>
 

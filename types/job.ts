@@ -58,6 +58,8 @@ export interface Job {
 
 export interface JobApplication {
     id: string;
+    name  :string,
+    email : string
     resumeUrl: string | null;
     coverLetter: string | null;
     status: ApplicationStatus;

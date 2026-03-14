@@ -61,7 +61,7 @@ export const GetApplications = async ({ query }: { query: { [key: string]: strin
   const queryString = query ? `?${new URLSearchParams(query).toString()}` : "";
 
   try {
-    const res = await serverQueryWithReauth({ payload: JSON.stringify({}), endPoint: "/applications" + queryString, method: "GET", tags: [tags.applications] });
+    const res = await serverQueryWithReauth({ endPoint: "/applications" + queryString, method: "GET", tags: [tags.applications] });
     return res;
   } catch (err) {
     throw err;
