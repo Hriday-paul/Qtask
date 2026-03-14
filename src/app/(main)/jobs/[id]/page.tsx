@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return {
     title: `${data?.title} at ${data?.company?.name}`,
     description: TextTruncate(data?.description, 155),
-    metadataBase: new URL('https://quickhire.com'),
+    metadataBase: new URL('https://qtask-two.vercel.app'),
     
     openGraph: {
       title: TextTruncate(`${data?.title} at ${data?.company?.name}`, 60),

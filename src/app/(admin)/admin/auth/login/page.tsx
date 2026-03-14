@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Admin Login",
-  description: "Admin login for RunBd.",
+  description: "Admin login for Quick Hire.",
 };
 
 const LoginPage = () => {

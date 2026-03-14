@@ -12,7 +12,7 @@ import { Metadata } from 'next'
 export const metadata: Metadata = {
   title: "Browse All Jobs",
   description: "Browse thousands of job listings in Bangladesh on QuickHire. Find full-time, part-time, remote, and freelance jobs across all industries. Apply instantly and land your dream job today!",
-  metadataBase: new URL('https://quickhire.com'),
+  metadataBase: new URL('https://qtask-two.vercel.app'),
   
   openGraph: {
     title: 'Browse All Jobs in Bangladesh | QuickHire',

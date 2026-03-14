@@ -34,14 +34,14 @@ export const metadata: Metadata = {
     "private job", "ngo job", "it job", "software job", "engineering job",
   ],
 
-  metadataBase: new URL('https://quickhire.com'),
+  metadataBase: new URL('https://qtask-two.vercel.app'),
 
   openGraph: {
     title: 'QuickHire - Find Your Dream Job in Bangladesh',
     description: "Bangladesh's leading job portal — find full-time, part-time, remote, and freelance jobs. Connect with top employers and apply instantly.",
-    url: 'https://quickhire.com',
+    url: 'https://qtask-two.vercel.app',
     siteName: 'QuickHire',
-    images: ["https://quickhire.com/og-image.png"],
+    images: ["https://qtask-two.vercel.app/og-image.png"],
     type: 'website',
   },
 
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     title: 'QuickHire - Find Your Dream Job in Bangladesh',
     description: "Bangladesh's leading job portal — find full-time, part-time, remote, and freelance jobs. Connect with top employers and apply instantly.",
     creator: '@quickhire',
-    images: ['https://quickhire.com/og-image.png'],
+    images: ['https://qtask-two.vercel.app/og-image.png'],
   },
 
   robots: {

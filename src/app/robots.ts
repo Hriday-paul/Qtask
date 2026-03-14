@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin/'],
     },
-    sitemap: 'https://runbd.com/sitemap.xml',
+    sitemap: 'https://qtask-two.vercel.app/sitemap.xml',
   }
 }
