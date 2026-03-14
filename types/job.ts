@@ -36,7 +36,7 @@ export interface Job {
     responsibilities: string;
     requirements: string;
     benefits: string;
-    category: string;
+    category: JobCategory;
     experience: string;
     education: string[];
     gender: string[];

@@ -57,13 +57,13 @@ function Navbar() {
                             <ul className='lg:flex flex-row gap-x-5 lg:gap-x-8 items-center hidden'>
 
                                 <li className='font-epilogue text-base text-neutral/80 font-medium hover:text-primary duration-200'>
-                                    <Link href={"/"}>
+                                    <Link href={"/jobs"}>
                                         Find Jobs
                                     </Link>
                                 </li>
 
                                 <li className='font-epilogue font-medium text-base text-neutral/80 hover:text-primary duration-200'>
-                                    <Link href={"/"}>
+                                    <Link href={"/#"}>
                                         Browse Companies
                                     </Link>
                                 </li>
@@ -73,11 +73,11 @@ function Navbar() {
 
                         <div className="flex flex-row gap-x-2.5 md:gap-x-4 lg:gap-x-5 items-center">
 
-                            <Link href={"/login"} className="font-epilogue font-bold text-primary">Login</Link>
+                            <Link href={"/admin"} className="font-epilogue font-bold text-primary">Login</Link>
 
                             <div className="w-px bg-neutral/20 h-8"></div>
 
-                            <button className='cursor-pointer text-white border-0 bg-primary px-5 py-3 font-epilogue font-bold'>
+                            <button className='cursor-pointer text-white border-0 bg-primary hover:bg-primary/80 duration-200 px-5 py-3 font-epilogue font-bold'>
                                 Sign Up
                             </button>
 

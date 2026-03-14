@@ -1,10 +1,10 @@
 import { config } from "@/utils/config";
 import { tags } from "../Tags";
 
-const GetFeatureAds = async () => {
+const GetFeatureJobs = async () => {
     try {
         const response = await fetch(
-            config.serverBaseApi + `/feature-ads`,
+            config.serverBaseApi + `/jobs/feature/`,
             {
                 next: {
                     tags: [tags.featureJobs],
@@ -13,7 +13,7 @@ const GetFeatureAds = async () => {
         );
         if (!response.ok) {
             // This will activate the closest `error.js` Error Boundary
-            throw new Error("Failed to fetch data");
+            throw new Error("Failed to load data");
         }
         const res = response.json();
         return res;
@@ -22,4 +22,4 @@ const GetFeatureAds = async () => {
     }
 };
 
-export default GetFeatureAds;
+export default GetFeatureJobs;

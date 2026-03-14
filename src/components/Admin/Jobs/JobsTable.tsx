@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { IMeta, Job } from "../../../../types/job";
-import { SquarePen, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import EditJob from "./EditJob";

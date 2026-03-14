@@ -1,7 +1,6 @@
 import { PiSlidersHorizontalDuotone } from "react-icons/pi";
 import Image from "next/image";
-import { IMeta } from "../../../types/job";
-import { JobCardProps } from "../Home/Section5";
+import { IMeta, Job } from "../../../types/job";
 import SearchParamsPagination from "./SearchParamsPagination";
 import SmFilter from "./SmFilter";
 import JobFilter from "./JobFilter";
@@ -9,7 +8,7 @@ import SortBar from "./Sortbar";
 import JobCard from "@/shared/JobCard";
 
 
-async function Jobs({ adsPromise, page, limit, sort }: { adsPromise: Promise<{ data: { data: JobCardProps[], meta: IMeta } }>, page: number, limit?: string, sort?: string }) {
+async function Jobs({ adsPromise, page, limit, sort }: { adsPromise: Promise<{ data: { data: Job[], meta: IMeta } }>, page: number, limit?: string, sort?: string }) {
 
     const data = await adsPromise;
 
@@ -35,7 +34,7 @@ async function Jobs({ adsPromise, page, limit, sort }: { adsPromise: Promise<{ d
             {
                 data?.data?.meta?.total <= 0 && <section className='min-h-[calc(25vh)] flex flex-col items-center justify-center'>
                     <Image src={"/empty_data.jpg"} height={1000} width={1000} className='h-28 w-auto mx-auto' alt='empty data' />
-                    <h5 className='text-base font-figtree text-center'>{"Job Not found"}</h5>
+                    <h5 className='text-base font-epilogue text-center'>{"Job Not found"}</h5>
                 </section>
             }
 

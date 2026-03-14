@@ -8,8 +8,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox"
 import { useCallback } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { divisions, educations } from "@/utils/config";
-import { categoryList } from "../Home/Section3";
+import { categories, educations } from "@/utils/config";
 
 
 function JobFilter() {
@@ -20,11 +19,13 @@ function JobFilter() {
     const selectedJobTypes = searchParams.get("jobType")?.split(",") || [];
     const selecteemployment_types = searchParams.get("employmentType")?.split(",") || [];
 
-    const selecteddivisions = searchParams.get("division")?.split(",") || [];
-    const selectededucations = searchParams.get("education")?.split(",") || [];
+    const selectedDivisions = searchParams.get("division")?.split(",") || [];
+    const selectedcats = searchParams.get("category")?.split(",") || [];
+    const selectedEducations = searchParams.get("education")?.split(",") || [];
 
     const updateQueryParam = useCallback(
         (key: string, value: string, targetId?: string) => {
+            console.log(key, value)
             const currentValues = searchParams.get(key)?.split(",") || [];
 
             let newValues: string[];
@@ -99,10 +100,10 @@ function JobFilter() {
                     <AccordionContent className="border-t border-stroke pt-4 space-y-3">
                         {
                             educations.map(i => {
-                                const isChecked = selecteemployment_types.includes(i?.value);
+                                const isChecked = selectedEducations.includes(i?.value);
                                 return <div key={i?.id} className="flex items-center gap-3">
-                                    <Checkbox id={i?.id.toString()} className="size-5 cursor-pointer" checked={isChecked} onCheckedChange={() => updateQueryParam("employmentType", i.value)} />
-                                    <label htmlFor={i.id.toString()} className="font-epilogue text-base cursor-pointer">{i?.name}</label>
+                                    <Checkbox id={i?.value} className="size-5 cursor-pointer" checked={isChecked} onCheckedChange={() => updateQueryParam("education", i.value)} />
+                                    <label htmlFor={i.value} className="font-epilogue text-base cursor-pointer">{i?.name}</label>
                                 </div>
                             })
                         }
@@ -110,17 +111,17 @@ function JobFilter() {
                 </AccordionItem>
             </Accordion>
 
-            {/* -----------Division Filter------------ */}
+            {/* -----------category Filter------------ */}
             <Accordion type="single" collapsible className="bg-white px-4 rounded-lg border border-stroke" defaultValue="categoryList">
                 <AccordionItem value="categoryList">
                     <AccordionTrigger className="text-lg font-epilogue font-medium hover:no-underline cursor-pointer">Categories</AccordionTrigger>
                     <AccordionContent className="border-t border-stroke pt-4 space-y-3">
                         {
-                            categoryList?.map(i => {
-                                const isChecked = selecteddivisions.includes(i?.title);
+                            categories?.map(i => {
+                                const isChecked = selectedcats.includes(i?.value);
                                 return <div key={i?.id} className="flex items-center gap-3">
-                                    <Checkbox id={i?.id.toString()} className="size-5 cursor-pointer" checked={isChecked} onCheckedChange={() => updateQueryParam("division", i?.title)} />
-                                    <label htmlFor={i?.id.toString()} className="font-epilogue text-base cursor-pointer">{i?.title}</label>
+                                    <Checkbox id={i?.value} className="size-5 cursor-pointer" checked={isChecked} onCheckedChange={() => updateQueryParam("category", i?.value)} />
+                                    <label htmlFor={i?.value} className="font-epilogue text-base cursor-pointer">{i?.label}</label>
                                 </div>
                             })
                         }

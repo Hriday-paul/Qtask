@@ -7,10 +7,10 @@ import {
 } from "@/components/ui/carousel"
 
 import Autoplay from "embla-carousel-autoplay"
-import { JobCardProps } from "./Section5"
 import JobCard from "@/shared/JobCard"
+import { Job } from "../../../types/job"
 
-function FeatureJobCarousel({ jobs }: { jobs: JobCardProps[] }) {
+function FeatureJobCarousel({ jobs }: { jobs: Job[] }) {
     return (
         <Carousel
             plugins={[

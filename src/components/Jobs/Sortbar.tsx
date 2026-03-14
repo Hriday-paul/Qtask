@@ -19,16 +19,16 @@ function SortBar({ limit = "21", sort = "createdAt" }: { limit?: string, sort?: 
         <div className="flex items-center gap-2">
 
             <div className="flex items-center border border-stroke md:px-2.5 px-1 rounded-md">
-                <span className="text-sm font-popin">Limit:</span>
+                <span className="text-sm font-epilogue">Limit:</span>
                 <Select
                     // value={limit?.toString()}
                     defaultValue={limit}
                 onValueChange={(value) => updateMultipleSearchParam({ "limit": value })}
                 >
-                    <SelectTrigger className="border-none shadow-none focus-visible:ring-0 px-2 truncate font-popin cursor-pointer">
+                    <SelectTrigger className="border-none shadow-none focus-visible:ring-0 px-2 truncate font-epilogue cursor-pointer">
                         <SelectValue placeholder={limit?.toString()} />
                     </SelectTrigger>
-                    <SelectContent className="font-popin">
+                    <SelectContent className="font-epilogue">
                         <SelectItem value="21">21</SelectItem>
                         <SelectItem value="40">40</SelectItem>
                         <SelectItem value="50">50</SelectItem>
@@ -40,15 +40,15 @@ function SortBar({ limit = "21", sort = "createdAt" }: { limit?: string, sort?: 
             </div>
 
             {/* <div className="md:flex items-center  border border-stroke md:px-2.5 px-1 rounded-md hidden">
-                <span className="text-sm truncate font-popin">Sort by:</span>
+                <span className="text-sm truncate font-epilogue">Sort by:</span>
                 <Select
                     defaultValue={sort}
                     onValueChange={(value) => updateMultipleSearchParam({"sort": value})}
                 >
-                    <SelectTrigger className="h-8 border-none shadow-none focus-visible:ring-0 px-2 font-popin cursor-pointer">
+                    <SelectTrigger className="h-8 border-none shadow-none focus-visible:ring-0 px-2 font-epilogue cursor-pointer">
                         <SelectValue placeholder={sort?.toString()}/>
                     </SelectTrigger>
-                    <SelectContent className="font-popin">
+                    <SelectContent className="font-epilogue">
                         <SelectItem value="-createdAt">New post</SelectItem>
                         <SelectItem value="createdAt">Old post</SelectItem>
                         <SelectItem value="price">Price: Low to High</SelectItem>

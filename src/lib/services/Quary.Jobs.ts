@@ -31,6 +31,31 @@ export const GetJobs = async ({ query }: { query: { [key: string]: string } }) =
   }
 };
 
+export const GetCategories = async () => {
+
+  try {
+
+    const response = await fetch(
+      config.serverBaseApi + "/jobs/categories",
+      {
+        cache: "no-store"
+      }
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => null);
+
+      throw new Error(
+        errorData?.message || "Failed to load categories"
+      );
+    }
+    const res = response.json();
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
+
 export const GetApplications = async ({ query }: { query: { [key: string]: string } }) => {
 
   const queryString = query ? `?${new URLSearchParams(query).toString()}` : "";

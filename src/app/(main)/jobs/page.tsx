@@ -3,10 +3,9 @@ import PageTop from '@/shared/PageTop'
 import Link from 'next/link'
 import { IoIosArrowForward } from 'react-icons/io'
 import { Suspense } from 'react'
-import Jobs from '@/components/Jobs/Jobs'
 import Searchbar from '@/components/Jobs/SearchBar'
-import { GetAdsByCategory } from '@/lib/services/Quary.Ads'
-import { tags } from '@/lib/Tags'
+import { GetJobs } from '@/lib/services/Quary.Jobs'
+import Jobs from '@/components/Jobs/Jobs'
 
 async function JobsPage({
   searchParams: ssp,
@@ -14,7 +13,7 @@ async function JobsPage({
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
 
-  const { limit, sort, page, searchTerm, division, jobType, employmentType, } = await ssp;
+  const { limit, sort, page, searchTerm, division, jobType, employmentType, education, category } = await ssp;
 
   let sortBy = "createdAt";
   let orderBy = "desc"
@@ -36,43 +35,49 @@ async function JobsPage({
   if (employmentType) {
     query.employment_type = employmentType
   }
+  if (education) {
+    query.education = education
+  }
   if (searchTerm) {
     query.searchTerm = searchTerm
+  }
+  if (category) {
+    query.category = category
   }
   if (limit) {
     query.limit = limit
   }
 
-  const adsPromise = GetAdsByCategory({ endPoint: "/jobs", query, tags: [tags?.jobs] });
+  const jobsPromise = GetJobs({ query });
 
-    return (
-        <div className=''>
-            <PageTop title='Job List'>
-                <h3 className="text-xs md:text-sm font-clash text-gray-100 flex flex-row gap-x-1.5 justify-center items-center">
-                    <Link href='/' className='font-epilogue'>Home</Link> <IoIosArrowForward className='' /> <p className='font-epilogue'>Jobs</p>
-                </h3>
-            </PageTop>
+  return (
+    <div className=''>
+      <PageTop title='Job List'>
+        <h3 className="text-xs md:text-sm font-clash text-gray-100 flex flex-row gap-x-1.5 justify-center items-center">
+          <Link href='/' className='font-epilogue'>Home</Link> <IoIosArrowForward className='' /> <p className='font-epilogue'>Jobs</p>
+        </h3>
+      </PageTop>
 
-            <div className='bg-[#F2F4F8] py-8'>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 xl:grid-cols-4 gap-5 container py-5'>
-                    <div className='lg:col-span-2 xl:col-span-1 hidden lg:block'>
-                        <JobFilter />
-                    </div>
-                    <div className='col-span-1 md:col-span-2 lg:col-span-6 xl:col-span-3'>
-                        <div>
-                            <Searchbar />
+      <div className='bg-[#F2F4F8] py-8'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 xl:grid-cols-4 gap-5 container py-5'>
+          <div className='lg:col-span-2 xl:col-span-1 hidden lg:block'>
+            <JobFilter />
+          </div>
+          <div className='col-span-1 md:col-span-2 lg:col-span-6 xl:col-span-3'>
+            <div>
+              <Searchbar />
 
-                            {/* <Suspense fallback={<div/>}>
-                                <Jobs adsPromise={adsPromise} limit={limit} page={Number(page)} sort={sort} />
-                            </Suspense> */}
+              <Suspense fallback={<div />}>
+                <Jobs adsPromise={jobsPromise} limit={limit} page={Number(page)} sort={sort} />
+              </Suspense>
 
-                        </div>
-                    </div>
-                </div>
             </div>
-
+          </div>
         </div>
-    )
+      </div>
+
+    </div>
+  )
 }
 
 export default JobsPage
