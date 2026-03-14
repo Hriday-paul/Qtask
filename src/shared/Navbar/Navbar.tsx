@@ -9,7 +9,7 @@ import Link from "next/link"
 export const navitems = [
     {
         id: 1,
-        rout: "/Jobs",
+        rout: "/jobs",
         label: "Find Jobs"
     },
     {
@@ -20,11 +20,6 @@ export const navitems = [
 ]
 
 function Navbar() {
-    const pathname = usePathname();
-
-    const handleMoveProfile = () => {
-
-    }
 
     return (
 

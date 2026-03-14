@@ -4,6 +4,7 @@ import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import localFont from "next/font/local"
 import ReduxProvider from "@/shared/ReduxProvider";
+import NextJsTopLoader from "@/shared/NextJsTopLoader";
 
 const epilogue = Epilogue({
   variable: "--font-epilogue",
@@ -111,7 +112,7 @@ export default function RootLayout({
           pauseOnHover
           theme="colored"
         />
-        {/* <NextJsTopLoader /> */}
+        <NextJsTopLoader />
 
         <ReduxProvider>
           {children}
