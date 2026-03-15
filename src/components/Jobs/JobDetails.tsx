@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { CiLocationOn } from "react-icons/ci";
-import { MdOutlinePhone } from 'react-icons/md';
 import { Job } from '../../../types/job';
 import { notFound } from 'next/navigation';
 import { getImageUrl } from '@/utils/imageUrl';
@@ -23,7 +22,7 @@ async function JobDetails({ jobPromise }: { jobPromise: Promise<{ data: Job }> }
     { label: "Experience", value: (job: Job) => job?.experience ?? "N/A" },
     { label: "Gender", value: (job: Job) => job?.gender?.join(", ") ?? "N/A" },
     { label: "Education", value: (job: Job) => job?.education?.join(", ") ?? "N/A" },
-    { label: "Posted", value: (job: Job) => { moment(job?.createdAt).format("DD/MM/YY h:mm a") ?? "N/A" } },
+    { label: "Posted", value: (job: Job) => { return moment(job?.createdAt).format("DD/MM/YY h:mm a") } },
     { label: "Application End", value: (job: Job) => job?.deadline ?? "N/A" },
   ];
 
@@ -57,7 +56,7 @@ async function JobDetails({ jobPromise }: { jobPromise: Promise<{ data: Job }> }
       </div>
 
       <div className='grid grid-cols-3 gap-5 pb-20'>
-        <div className='col-span-2'>
+        <div className='col-span-3 lg:col-span-2'>
 
           <div className='my-8'>
             <h3 className='text-2xl font-clash font-medium mb-3 text-neutral'>Description : </h3>
@@ -83,7 +82,7 @@ async function JobDetails({ jobPromise }: { jobPromise: Promise<{ data: Job }> }
 
         </div>
 
-        <section className="rounded-lg self-start bg-[#F8F8FD] p-8 inline">
+        <section className="rounded-lg self-start col-span-3 lg:col-span-1 bg-[#F8F8FD] p-8 inline">
           <table className="table-auto w-full">
             <tbody>
               {summeryRows.map((row, index) => (

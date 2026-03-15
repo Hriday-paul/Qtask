@@ -19,7 +19,7 @@ async function Jobs({ adsPromise, page, limit, sort }: { adsPromise: Promise<{ d
                 <div className='lg:hidden'>
                     <SmFilter filterComponent={<JobFilter />} />
                 </div>
-                <p className="text-gray-500 text-sm font-popin font-medium flex flex-row gap-x-1.5 items-center">
+                <p className="text-gray-500 text-sm font-epilogue font-medium flex flex-row gap-x-1.5 items-center">
                     <PiSlidersHorizontalDuotone className="text-xl" />
                     {data?.data?.meta?.total } Job Found
                 </p>

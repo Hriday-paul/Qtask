@@ -91,7 +91,7 @@ async function JobsPage({
             <div>
               <Searchbar />
 
-              <Suspense fallback={<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+              <Suspense fallback={<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mt-5">
                 <LoadingJobCard />
                 <LoadingJobCard />
                 <LoadingJobCard />
