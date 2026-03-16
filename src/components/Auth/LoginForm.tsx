@@ -18,7 +18,7 @@ const LoginForm = () => {
     const router = useRouter();
 
     const { register, handleSubmit, reset, formState: { errors, isSubmitting: isLoading }, watch } = useForm<FormType>({
-        defaultValues: {}
+        defaultValues: {email : "admin@gmail.com", password : "123456"}
     });
 
     const handleFormSubmit: SubmitHandler<FormType> = async (data) => {
